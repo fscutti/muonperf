@@ -14,9 +14,9 @@ acquisition_time = {
     "two_months": 2 * 4 * 604800,
 }
 
-input_path = "/Users/fscutti/github/performance/data/input"
-lookup_path = "/Users/fscutti/github/performance/data/lookup"
-output_path = "/Users/fscutti/github/performance/data/output"
+input_path = "/Users/fscutti/github/muonperf/data/input"
+lookup_path = "/Users/fscutti/github/muonperf/data/lookup"
+output_path = "/Users/fscutti/github/muonperf/data/output"
 
 input_files = utils.get_files(input_path)
 lookup_files = utils.get_files(lookup_path)
