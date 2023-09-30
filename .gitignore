@@ -1,0 +1,63 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+__pycache__
+
+# Python package install files #
+################################
+*.egg-info
+# virtual env 
+*env*/
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.prof
+*.sql
+*.sqlite
+./*/logs/*
+# OS generated files #
+######################
+*.swp
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.nfs*
+\#*
+.\#*
+*~
+
+# Other #
+######################
+*.ipynb
+*.eps
+*.png
+*.pdf
+*.vscode
+*.root
+*.xml
+*.html
+*.dat
