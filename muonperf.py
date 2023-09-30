@@ -33,21 +33,17 @@ input_fluxes_err = utils.get_histograms(
 
 lookup_file = os.path.join(lookup_path, lookup_files[0])
 
-# flux_uncertainites = {}
-# flux_randomisation = {}
-# opacity_interpolation = {}
-
 for time_tag, seconds in tqdm(
     acquisition_time.items(), total=len(acquisition_time), colour="yellow"
 ):
     for h_file_name, h_flux in tqdm(
         input_fluxes.items(), total=len(input_fluxes), colour="green"
-    ):  
+    ):
         file_name = h_file_name.split(".")[0]
         output_file = f"Planning_{file_name}_{time_tag}.root"
         fits_path = os.path.join(output_path, output_file.split(".")[0])
 
-        # Time unit is in seconds.
+        # Acquisition time is given in seconds.
         h_flux_unc = utils.get_uncertainty(h_flux, time=seconds)
 
         h_flux_rand = utils.get_randomisation(h_flux, h_flux_unc)
@@ -59,31 +55,18 @@ for time_tag, seconds in tqdm(
         h_opacity = input_opacities[h_file_name]
         h_simulated_flux_err = input_fluxes_err[h_file_name]
 
+        h_list = [
+            h_flux,
+            h_flux_unc,
+            h_flux_rand,
+            h_opacity_inter,
+            h_opacity_inter_err,
+            h_opacity,
+            h_simulated_flux_err,
+        ]
+
         # Save histograms inside the same root file.
-        utils.save_as_root(
-            output_path,
-            output_file,
-            [
-                h_flux,
-                h_flux_unc,
-                h_flux_rand,
-                h_opacity_inter,
-                h_opacity_inter_err,
-                h_opacity,
-                h_simulated_flux_err,
-            ],
-        )
+        utils.save_as_root(output_path, output_file, h_list)
 
         # Save histograms under the same path and as separate fits files.
-        utils.save_as_fits(
-            fits_path,
-            [
-                h_flux,
-                h_flux_unc,
-                h_flux_rand,
-                h_opacity_inter,
-                h_opacity_inter_err,
-                h_opacity,
-                h_simulated_flux_err,
-            ],
-        )
+        utils.save_as_fits(fits_path, h_list)
